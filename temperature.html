@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Temperature Converter</title>
+  <script>
+    function convertTemperature() {
+      var temperatureInput = document.getElementById("temperatureInput").value;
+      var temperatureUnit = document.querySelector('input[name="unit"]:checked').value;
+      if (isNaN(temperatureInput)) {
+        alert("Please enter a valid number for the temperature.");
+        return;
+      }
+      var convertedTemperature;
+      var convertedUnit;
+
+      if (temperatureUnit === "celsius") {
+        convertedTemperature = (parseFloat(temperatureInput) * 9/5) + 32;
+        convertedUnit = "°F";
+      } else if (temperatureUnit === "fahrenheit") {
+        convertedTemperature = (parseFloat(temperatureInput) - 32) * 5/9;
+        convertedUnit = "°C";
+      } else if (temperatureUnit === "kelvin") {
+        convertedTemperature = parseFloat(temperatureInput) - 273.15;
+        convertedUnit = "°C";
+      }
+      document.getElementById("result").innerHTML = convertedTemperature.toFixed(2) + convertedUnit;
+    }
+  </script>
+</head>
+<body>
+  <h1>Temperature Converter</h1>
+  <label for="temperatureInput">Temperature:</label>
+  <input type="text" id="temperatureInput" required>
+  <br><br>
+  <input type="radio" name="unit" id="celsius" value="celsius" checked>
+  <label for="celsius">Celsius</label>
+  <input type="radio" name="unit" id="fahrenheit" value="fahrenheit">
+  <label for="fahrenheit">Fahrenheit</label>
+  <input type="radio" name="unit" id="kelvin" value="kelvin">
+  <label for="kelvin">Kelvin</label>
+  
+  <br><br>
+  <button onclick="convertTemperature()">Convert</button>
+  <br><br>
+  <div id="result"></div>
+</body>
+</html>
